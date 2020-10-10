@@ -18,6 +18,12 @@
 		<link rel="stylesheet" href="https://surveypositive.s3-us-west-2.amazonaws.com/css/reveal.css">
 		<link rel="stylesheet" href="https://surveypositive.s3-us-west-2.amazonaws.com/css/theme/blood.css">
 		<link rel="stylesheet" href="https://surveypositive.s3-us-west-2.amazonaws.com/lib/css/monokai.css">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
 		
 		<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
@@ -114,6 +120,67 @@ select:focus {
 .reveal .slides {
 width: 100% !important;
 }
+
+#mapid { height: 600px;
+		width: 100%; 
+		}
+
+		.reveal .leaflet-container .leaflet-fade-anim .leaflet-tile, .reveal .leaflet-container .leaflet-fade-anim .leaflet-popup {
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.reveal .leaflet-container {
+    font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.reveal .leaflet-container img {
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    max-height: inherit;
+}
+
+.reveal .leaflet-container .leaflet-popup-tip-container {
+    margin: 0 auto;
+}
+
+.reveal .leaflet-container .leaflet-popup-content-wrapper {
+    padding: 1px;
+    margin: inherit;
+}
+
+.reveal .leaflet-container .leaflet-popup-content {
+    margin: 13px 19px;
+    line-height: 1.4;
+}
+
+.reveal .leaflet-container .leaflet-popup-content h3 {
+    color: #333;
+}
+
+.reveal .leaflet-container .leaflet-popup-tip {
+    padding: 1px;
+    margin: -10px auto 0;
+}
+
+.reveal .leaflet-container .leaflet-popup-content, .reveal .leaflet-popup-content h2 {
+    color: #333;
+}
+
+.reveal .leaflet-container .leaflet-popup-content pre {
+    font-size: 14px;
+    width: 100%;
+    box-shadow: none;
+}	
+
+br {
+   display: block;
+   margin: 3px 0;
+}
 </style>
 
 
@@ -128,7 +195,7 @@ width: 100% !important;
 						<small>Análisis de encuestas, intención de voto y mapeo distrital</small>
 					</p>
 			</section>
-				<section data-state="state1" id="slide1" class="lo" data-transition="slide">
+				<section data-state="state1" id="slide1" class="lo" data-transition="slide" data-background="#222222">
 			<h2> Menú</h2>
 			<ol style="text-align:right;">
 			<li><h3 style="font-size: 1em;"><a href="#/2" >Preferencias por partido</a></h3></li>
@@ -140,66 +207,59 @@ width: 100% !important;
 	
 	</section>
 	<section data-state="state2" id="slide2" class="do" data-transition="slide"   data-background="#303030" data-background-transition="zoom">
-<h4><em>1. </em>Preferencias por partido</h4>
-<iframe width="100%" height="600" src="https://live.amcharts.com/llMmR/embed/" frameborder="0"></iframe>
-				
-				<!--	<p style="margin-top:120px;"> <a href="#/1" style="color:white;">Back to index</a></p>-->
-	</section>
-<section data-state="state3" id="slide3" class="do"  data-transition="slide"  data-background="#b5533c" >
-  <h3>Purpose of the Survey</h3>
-				
-				<ul>
-				<li>To find as much information as we can.</li>
-				<li>To help understand the state of mind of people.</li>
-				<li>To serve as a reference for policy makers and support providers.</li>
-				<li>To unite everyone.</li>
-
-				</ul>
-</section>
-<section data-state="state4" id="slide4" class="do" data-transition="slide" data-background="#b5533c" >
-<h3> Participants</h3>
-				<ul >
-				<li> All over India, locations confirmed with GPS.</li>
-				<li>5 states covered, 5 major cities.</li>
-				<li > Selected at random</li>
-				<li > All Invited from Social Media</li>
-				</ul>
-				
+<h4><em>1. </em>Hallazgos en preferencias por partido</h4><br>
+<ul style="list-style-type:none;">
+	<li > <small>‣ Para el último mes, las encuestadoras <em>Factométrica</em> y <em>Massive Caller</em> muestran un ascenso en las preferencias hacia el PRI, solo <em>Demoscopía</em> muestra lo contrario</small></li><br>
+	<li > <small>‣ En la última medición de sept-oct, las tres encuestadoras coinciden en un descenso de las preferencias hacia MORENA y PAN</small></li><br>
+	<li ><small>‣ La cantidad de indecisos aumentó en los tres casos</small></li><br>
+	<li ><small>‣ Para <em>Massive Caller</em>hay una tendencia a la baja en las preferencias de MORENA, aunque no se podría decir lo mismo de <em>Demoscopía</em> </small></li><br>
+	<br>
+	</ul>	
 		
 </section>
-<section id="slide5" data-state="state5" class="do" data-background="#b5533c">
+<section id="slide5" data-state="state5" class="do" data-background="#303030">
 
-<h3>Procedures</h3>
+	<h4><em>1. </em>Preferencias por partido</h4>
 				
-				<ol>
-				<li > Mode of Survey : <em>Online</em></li>
-				<li >One question asked online from all.</li>
-				<li >The answer and location were recorded</li>
-				<li >Analysis performed</li>
+	<iframe width="100%" height="600" src="https://live.amcharts.com/llMmR/embed/" frameborder="0"></iframe>
+
+</section>
+<section id="slide6" data-state="state6" class="lo" data-transition="slide" data-background="#222222" data-background-transition="zoom">
+	<h4><em>2. </em>Hallazgos en preferencias por candidato</h4><br>
 				
-				</ol>
+	<ul style="list-style-type:none;">
+	<li > <small>‣ A pesar de que la preferencia a caído recientemente para MORENA, la popularidad de su candidato Alfonso Durazo se ha mantenido estable, y en algunos casos ha ido en aumento</small></li><br>
+	<li > <small>‣ Mientras que hubo un repunte en el último mes de las preferencias hacia el PRI, la popularidad de Ernesto Gándara ha disminuido o en el mejor de los casos se ha mantenido estable</small></li><br>
+	<li ><small>‣ Las preferencias hacia Antonio Astiazarán han presentado una leve tendencia a la baja, hasta el momento no superan el 10% que alcanzaba a inicios del año</small></li><br>
+	<br>
+	</ul>	
 </section>
-<section id="slide6" data-state="state6" class="lo" data-transition="slide" data-background="#303030" data-background-transition="zoom">
-<h2><em>2. </em>Maps</h2>
+<section id="slide7" data-state="state7" class="lo" data-background="#303030">
+	<h4><em>2. </em>Preferencias por candidato(a):</h4>
 				
-				<ol style="font-size:32px;text-align:center;list-style-type:none;line-height:50px;margin-top:60px;">
-				<li > <h4><a href="#/7">Votes Distribution (States) </a></h4></li>
-				<li ><h4> <a href="#/8">Votes Distribution (Cities)</a></h4></li>
-				<li ><h4> <a href="#/9">Votes Distribution (Geolocation)</a></h4></li>
-				<li > <h4><a href="#/10">People who said NO</a></h4></li>
-				<li > <h4><a href="#/11">People who said YES</a></h4></li>
-				<li > <h4><a href="#/12">YES vs NO wrt states</a></h4></li>
-				
-				</ol>
-				<p style="margin-top:60px;"> <a href="#/1" style="color:white;">Back to index</a></p>
-				
+	<iframe width="100%" height="600" src="https://live.amcharts.com/A4YzZ/embed/" frameborder="0"></iframe>
 </section>
-<section id="slide7" data-state="state7" class="lo" data-background="#4d7e65">
+<section id="slide8" data-state="state8" class="lo" data-background="#222222">
+	<h4><em>3. </em>Hallazgos en preferencias por distrito</h4>
+	<ul style="list-style-type:none;">
+		<li ><small>‣ MORENA continúa manteniendo una alta preferencia en los distritos con cabecera en San Luis Río Colorado, Cd. Obregón y Hermosillo Norte</small></li><br>
+		<li ><small>‣ No obstante la alta preferencia en el distrito de Cd. Obregón, ésta tuvo una fuerte caída (25%) respecto a la elección de 2018 donde obtuvo el 60% del voto</small></li><br>
+		<li ><small>‣ La caída más pronunciada de MORENA respecto a la elección del 2018 ha sido en el sur del estado (Navojoa y Cd. Obregón), mientras que la menor ha sido en la frontera (Nogales y SLRC). A pesar de la fuerte caída de MORENA en el sur del estado, los distritos de Cd. Obregón y Navojoa siguen manteniendo los primeros lugares en preferencia hacia MORENA</small></li><br>
+		<li ><small>‣ El PRI recuperó un 8% de las preferencias en la zona rural de Sonora con cabecera en Guaymas y en Nogales, en el caso de Cd. Obregón (aunque insuficiente) éste recuperó un 10%</small></li><br>
+		<li ><small>‣ En SLRC y Navojoa, el PRI apenas recuperó un 3% de las preferencias respecto a la elección pasada</small></li><br>
+		<li ><small>‣ El PAN mantiene una preferencia mayor a la del PRI en SLRC y en el distrito V de Hermosillo</small></li><br>
+		<br>
+		</ul>
 </section>
-<section id="slide8" data-state="state8" class="lo" data-background="#4d7e65">
-</section>
-<section id="slide9" data-state="state9" class="lo" data-background="#4d7e65">
-</section>
+<section id="slide9" data-state="state9" class="lo" data-background="#303030">
+	<h4><em>3. </em>Preferencias por distrito electoral</h4>
+	<iframe src="https://codesandbox.io/embed/eleccionesunosolov2-forked-p4otg?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+     style="width:100%; height:700px; border:0; border-radius: 4px; overflow:hidden;"
+     title="EleccionesUnoSolov2 (forked)"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+</section><!--
 <section id="slide10" data-state="state10" class="lo" data-background="#4d7e65">
 </section>
 <section id="slide11" data-state="state11" class="lo" data-background="#4d7e65">
@@ -326,7 +386,7 @@ width: 100% !important;
 <h4>Keep Voting</h4>
 
 				
-</section>
+</section>-->
 
 		
 				
@@ -616,7 +676,7 @@ var values=JSON.parse(state.value);
     });
 	}
 
-	
+
 	</script>
 
 	</body>
